@@ -9,7 +9,7 @@ function Home() {
      const[outputs, setOutputs] = useState({});
     const[loading,setLoading] = useState({});
     const[copied, setCopied] = useState(null);
-    const[activeTabs, setActiveTabs] = useState(null)
+    const[activeTab, setActiveTab] = useState(null)
 
   const toggleFormat = (id)=>{
     setSelectedFormats((prev)=>
@@ -37,7 +37,7 @@ const generate = useCallback( async ()=>{
 
             const system = `You are an expert content creator and copywriter. ${format.prompt(
                 tone
-            )}Be creative, engaging and platform-native. Output only the content itself with no preample.`
+            )}Be creative, engaging and platform-native. Output only the content itself with no preamble.`
        
                 try{
                     const result = await generateContent(system, inputText);
@@ -64,10 +64,36 @@ const generate = useCallback( async ()=>{
     );
 },[inputText, selectedFormats, selectedTone])
 
+ const copyToClipboard = (text, id) => {
+    navigator.clipboard.writeText(text);
+    setCopied(id);
+    setTimeout(() => setCopied(null), 2000);
+  };
+
+  const downloadText = (text, filename) => {
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+
+    URL.revokeObjectURL(url);
+  };
+
+  const hasOutputs =
+    Object.keys(outputs).length > 0 ||
+    Object.values(loading).some(Boolean);
+
+  const activeFormat = FORMATS.find((f) => f.id === activeTab);
+  const activeOutput = activeTab ? outputs[activeTab] : null;
+  const isActiveLoading = activeTab ? loading[activeTab] : false;
+
 
 
   return (
-    <div>
+    <div className='min-h-100vh'>
       
     </div>
   )
