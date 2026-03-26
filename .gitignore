@@ -14,6 +14,7 @@ dist-ssr
 ContentRePurposer.tsx
 Content.jsx
 Content2.jsx
+.env
 
 # Editor directories and files
 .vscode/*
