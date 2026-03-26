@@ -13,3 +13,6 @@ export const generateContent = async (prompt, inputText) => {
 
   return res.json();
 };
+
+
+
