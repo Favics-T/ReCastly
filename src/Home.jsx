@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react'
+import React, { use, useCallback, useState } from 'react'
 import { FORMATS, TONES } from './data';
 import { generateContent } from './service/contentService';
 
@@ -18,7 +18,7 @@ function Home() {
     : [...prev, id] // add it, if it does not exist
 ) }
 
-const generate = usecallback( async ()=>{
+const generate = useCallback( async ()=>{
     if(!inputText.trim() || selectedFormats.length === 0) return;
 
     const tone = 
