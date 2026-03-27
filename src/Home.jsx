@@ -140,8 +140,33 @@ const generate = useCallback( async ()=>{
                     </div>
                     {/* Formats */}
                     <div>
-
+                    <div className='section-label'>OutPut Formats</div>
+                    <div className="format-list">
+                        {
+                            FORMATS.map((f)=>(
+                                <button key={f.id} className={`format-btn ${selectedFormats.includes(f.id)? "selected":""}`}
+                                onClick={()=> toggleFormat(f.id)}>
+                                    <div className='format-icon'
+                                    style={{
+                                        background: selectedFormats.includes(f.id)
+                                        ? `${f.color}22`
+                                        :"#1a12e",
+                                        color: selectedFormats.includes(f.id)?f.color:'#444'
+                                    }}>
+                                        {f.icon}
+                                    </div>
+                                    <span className='format-name'>{f.label}</span>
+                                    <div className={`checkmark ${selectedFormats.includes(f.id)? "checked":""}`}>
+                                        {selectedFormats.includes(f.id)&& '✓'}
+                                    </div>
+                                </button>
+                            ))}
                     </div>
+                    </div>
+                    {/* Generate */}
+                    <button>
+                        Generate {selectedFormats.length > 0? `${selectedFormats.length} Format${selectedFormats>1 ? "s":""}`: "Content"}
+                    </button>
                 </div>
             </div>
             
