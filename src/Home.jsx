@@ -1,4 +1,4 @@
-import React, { use, useCallback, useState } from 'react'
+import React, { act, use, useCallback, useState } from 'react'
 import { FORMATS, TONES } from './data';
 import { generateContent } from './service/contentService';
 // import { FaRegStarHalf } from "react-icons/fa";
@@ -172,7 +172,115 @@ const generate = useCallback( async ()=>{
                         Generate {selectedFormats.length > 0? `${selectedFormats.length} Format${selectedFormats>1 ? "s":""}`: "Content"}
                     </button>
                 </div>
-                {/* RIGHT PANELA */}
+                {/* RIGHT PANEL */}
+                <div className='right-panel h-screen'>
+                        {!hasOutputs ?(
+                            <div className='empty-state'>
+                                <div className='empty-icon'>✦</div>
+                                <div className="empty-title">Your Outputs appear here</div>
+                                <div className="empty-sub">Paste content → Pick formats →Generate</div>
+                            </div>
+                        ):
+                        (<div className='output-area'> 
+                            {/* Tabs */}
+                            <div className="tabs-bar">
+                                {
+                                    selectedFormats.map((fid)=>{
+                                        const fmt = FORMATS.find((f)=> f.id ===fid);
+                                        return(
+                                            <div 
+                                            key={fid}
+                                            className={`tab ${activeTab === fid ? "active-tab":""}`}
+                                            onClick={()=>setActiveTab(fid)}
+                                           style={{
+                                            borderBottom: activeTab === fid ? fmt.color : "transparent",
+                                            color:activeTab === fid ? fmt.color : undefined,
+                                           }}
+                                           >
+                                                <span>{fmt.icon}</span>
+                                                <span>{fmt.label}</span>
+                                                {loading[fid] && <span>●</span>}
+                                            </div>
+                                        );
+                                    })}
+                            </div>
+                            {/* Output Content */}
+                            <div className="output-content">
+                                {
+                                    activeTab && (
+                                        <>
+                                        <div className="output-header">
+                                            <div className="output-title-group">
+                                                <div
+                                                className='format-icon'
+                                                style={{
+                                                    background:`${activeFormat?.color}22`,
+                                                    color:activeFormat?.color,
+                                                    width:36,
+                                                    height:36,
+                                                    borderRadius:8
+                                                }}
+                                                >
+                                                    {activeFormat?.icon}
+                                                </div>
+                                                <div>
+                                                    <div style={{fontSize:15, fontWeight:600, fontFamily:"'Playfair Display', serif"}}>
+                                                        {activeFormat?.label}
+                                                    </div>
+                                                    {activeOutput&&(
+                                                        <div className='word-count'>
+                                                            ~{activeOutput.split(/\s+/).filter(Boolean).length} words
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            {
+                                                activeOutput && !isActiveLoading && (
+                                                    <div className='output-actions'>
+                                                            <button
+                                                            className={`action-btn ${copied ===activeTab ? "success":""}`}
+                                                            onClick={()=> copyToClipboard(activeOutput,activeTab)}
+                                                            >
+                                                                {copied === activeTab? "Copied":"Copy"}
+                                                            </button>
+                                                            <button
+                                                            className='action-btn'
+                                                            onClick={()=>
+                                                                downloadText(
+                                                                    activeOutput,
+                                                                    `${activeTab}-content.txt`
+                                                                )
+                                                            }
+                                                            >
+                                                                Download
+                                                            </button>
+                                                        </div>
+                                                )}
+                                        </div>
+                                        {
+                                            isActiveLoading? (
+                                                <div className='loading-pulse'>
+                                                        {[85, 100,60,90,75,45,80,55,95,70].map((w,i)=>(
+                                                            <div
+                                                            key={i}
+                                                            className='pulse-line'
+                                                            style={{width:`${w}%`, animationDelay: `${i*0.08}s`}}
+                                                            />
+                                                        ))}
+                                                </div>
+                                            ) : activeOutput? (
+                                                <div className='output-body'>{activeOutput}</div>
+                                            ):null }
+                                        </>
+                                    )
+                                }
+                            </div>
+                        </div>
+
+                        )
+
+                        }
+                </div>
             </div>
             
                     </div>
