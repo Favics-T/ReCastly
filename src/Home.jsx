@@ -164,10 +164,15 @@ const generate = useCallback( async ()=>{
                     </div>
                     </div>
                     {/* Generate */}
-                    <button>
+                    <button
+                    className='generate-btn'
+                    onClick={generate}
+                    disabled={!inputText.trim() || selectedFormats.length === 0}
+                    >
                         Generate {selectedFormats.length > 0? `${selectedFormats.length} Format${selectedFormats>1 ? "s":""}`: "Content"}
                     </button>
                 </div>
+                {/* RIGHT PANELA */}
             </div>
             
                     </div>
