@@ -1,6 +1,9 @@
 import React, { use, useCallback, useState } from 'react'
 import { FORMATS, TONES } from './data';
 import { generateContent } from './service/contentService';
+// import { FaRegStarHalf } from "react-icons/fa";
+// import { FaRegStarHalf } from "react-icons/fa";
+
 
 function Home() {
     const[inputText, setInputText] = useState("");
@@ -94,6 +97,55 @@ const generate = useCallback( async ()=>{
 
   return (
     <div className='min-h-screen  bg-[#0a0a0f]'>
+        <div className='repurposer-root'>
+            <div className='header-bar'>
+                <div className='logo-mark'>RC</div>
+                    <div>
+                        <div className='logo-text'>ReCastly</div>
+                        <div className='logo-sub'>AI Content Engine</div>
+                    </div>
+            </div>
+
+            <div className="main-layout">
+                {/* Left panel */}
+                <div className="left-panel">
+                    {/* input */}
+                    <div>
+                        <div className="section-label">Your Content</div>
+                        <div className="textarea-wrapper">
+                            <textarea className="content-textarea" 
+                            value={inputText}
+                            onChange={(e)=> setInputText(e.target.value)}
+                            placeholder="Paste your content here - blog post, a video transcript, an idea a thread, a speech.. anything" 
+                            />
+                        </div>
+                        <div className="char-count">{inputText.length} chars .~{Math.ceil(inputText.split(/\s+/).filter(Boolean).length)} words</div>
+                    </div>
+
+                    {/* Tone */}
+                    <div>
+                        <div className="section-label">Tone</div>
+                        <div className="tone-grid">
+                            {TONES.map((t)=>(
+                                <button
+                                key={t.id}
+                                className={`tone-btn ${selectedTone === t.id? 'active':""}`}
+                                onClick={()=> setSelectedTone(t.id)}
+                                >
+                                    <span className='tone-label'>{t.label}</span>
+                                    <span className='tone-desc'>{t.desc}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                    {/* Formats */}
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+            
+                    </div>
       
     </div>
   )
