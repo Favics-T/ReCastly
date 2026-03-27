@@ -1,56 +1,61 @@
- @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&display=swap');
 
- *{
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
   box-sizing: border-box;
- }
+}
 
+@layer components {
   .repurposer-root {
-          font-family: 'Georgia', serif;
-        }
+    font-family: 'Georgia', serif;
+  }
 
-        .header-bar {
-          border-bottom: 1px solid #1E1E2E;
-          padding: 20px 40px;
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          background: rgba(255,255,255,0.02);
-        }
+  .header-bar {
+    border-bottom: 1px solid #1E1E2E;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.02);
+  }
 
-       .logo-mark {
-          width: 36px;
-          height: 36px;
-          background: linear-gradient(135deg, #FF4444, #FFB800);
-          border-radius: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 18px;
-        }
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #FF4444, #FFB800);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
 
-        .logo-text {
-          font-family: 'Playfair Display', serif;
-          font-size: 20px;
-          font-weight: 700;
-          letter-spacing: -0.3px;
-        }  
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
 
-         .logo-sub {
-          font-family: 'DM Mono', monospace;
-          font-size: 10px;
-          color: #666;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          margin-top: 1px;
-        }
+  .logo-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
 
-        .main-layout {
-          display: grid;
-          grid-template-columns: 420px 1fr;
-          min-height: calc(100vh - 77px);
-        }
+  .main-layout {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    min-height: calc(100vh - 77px);
+  }
 
-        .left-panel {
+   .left-panel {
           border-right: 1px solid #1E1E2E;
           padding: 32px;
           display: flex;
@@ -59,7 +64,7 @@
           overflow-y: auto;
         }
 
-         .section-label {
+        .section-label {
           font-family: 'DM Mono', monospace;
           font-size: 10px;
           letter-spacing: 2px;
@@ -92,7 +97,7 @@
           border-color: #333355;
         }
 
-         .content-textarea::placeholder {
+        .content-textarea::placeholder {
           color: #333;
         }
 
@@ -195,7 +200,7 @@
           flex: 1;
         }
 
-        .checkmark {
+          .checkmark {
           width: 18px;
           height: 18px;
           border-radius: 50%;
@@ -213,7 +218,7 @@
           color: #0A0A0F;
         }
 
-        .generate-btn {
+         .generate-btn {
           width: 100%;
           padding: 16px;
           background: linear-gradient(135deg, #FF4444 0%, #FF8800 50%, #FFB800 100%);
@@ -228,12 +233,12 @@
           letter-spacing: 0.3px;
         }
 
-          .generate-btn:hover:not(:disabled) {
+        .generate-btn:hover:not(:disabled) {
           opacity: 0.92;
           transform: translateY(-1px);
         }
 
-        .generate-btn:disabled {
+         .generate-btn:disabled {
           opacity: 0.35;
           cursor: not-allowed;
         }
@@ -243,7 +248,7 @@
           flex-direction: column;
         }
 
-         .empty-state {
+        .empty-state {
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -254,8 +259,7 @@
           padding: 60px;
           text-align: center;
         }
-
-        .empty-icon {
+          .empty-icon {
           font-size: 48px;
           opacity: 0.4;
         }
@@ -266,7 +270,7 @@
           color: #333355;
         }
 
-         .empty-sub {
+        .empty-sub {
           font-family: 'DM Mono', monospace;
           font-size: 11px;
           color: #2A2A3E;
@@ -287,7 +291,7 @@
           padding: 0 24px;
         }
 
-          .tab {
+         .tab {
           padding: 14px 16px;
           font-family: 'DM Mono', monospace;
           font-size: 11px;
@@ -306,8 +310,7 @@
         .tab:hover {
           color: #888;
         }
-
-         .tab.active-tab {
+          .tab.active-tab {
           color: #E8E8F0;
           border-bottom-color: #E8E8F0;
         }
@@ -320,7 +323,7 @@
           opacity: 0.6;
         }
 
-        .output-content {
+         .output-content {
           flex: 1;
           padding: 32px 40px;
           overflow-y: auto;
@@ -348,7 +351,7 @@
           flex-shrink: 0;
         }
 
-          .action-btn {
+        .action-btn {
           padding: 8px 14px;
           background: #0F0F1A;
           border: 1px solid #1E1E2E;
@@ -367,7 +370,7 @@
           color: #ccc;
         }
 
-         .action-btn.success {
+        .action-btn.success {
           border-color: #00C896;
           color: #00C896;
         }
@@ -385,7 +388,7 @@
           flex: 1;
         }
 
-         .loading-pulse {
+        .loading-pulse {
           display: flex;
           flex-direction: column;
           gap: 12px;
@@ -417,3 +420,6 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #1E1E2E; border-radius: 2px; }
+
+  /* ...keep the rest of your CSS as is... */
+}

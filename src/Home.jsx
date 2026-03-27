@@ -93,7 +93,7 @@ const generate = useCallback( async ()=>{
 
 
   return (
-    <div className='min-h-100vh'>
+    <div className='min-h-[100vh]  bg-[#0a0a0f]'>
       
     </div>
   )
