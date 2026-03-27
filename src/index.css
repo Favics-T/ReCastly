@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&display=swap');
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
+/* @tailwind base; */
+/* @tailwind components; */
+@tailwind utilities;
 * {
   box-sizing: border-box;
 }
@@ -420,6 +419,4 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #1E1E2E; border-radius: 2px; }
-
-  /* ...keep the rest of your CSS as is... */
 }
